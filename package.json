@@ -1,0 +1,24 @@
+{
+  "name": "stellarformtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewyang96/StellarFormTest.git"
+  },
+  "author": "Andrew Yang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewyang96/StellarFormTest/issues"
+  },
+  "homepage": "https://github.com/andrewyang96/StellarFormTest#readme",
+  "dependencies": {
+    "dotenv": "^5.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}
