@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 
 app.set('view engine', 'ejs');
+app.use(express.json());
 app.use(express.static('public'));
 
 const https = require('https');
@@ -17,7 +18,10 @@ app.get('/', (req, res) => {
 });
 
 app.post('/transactions', (req, res) => {
-  res.send('XDR received: ' + req.body.xdr);
+  res.json({
+    success: true,
+    xdr: req.body.xdr
+  });
 });
 
 const server = https.createServer(httpsOptions, app).listen(process.env.PORT, () => {

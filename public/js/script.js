@@ -18,14 +18,31 @@
     getSequenceNumber(destinationAddress, function (sequenceNumber) {
       var account = new StellarSdk.Account(destinationAddress, sequenceNumber);
       var memo = memoText ? StellarSdk.Memo.text(memoText) : StellarSdk.Memo.none();
-      var transaction = new TransactionBuilder(account, {memo: memo})
+      var transaction = new StellarSdk.TransactionBuilder(account, {memo: memo})
         .addOperation(StellarSdk.Operation.payment({
             destination: destinationAddress,
-            asset: StellarBase.Asset.native(),
+            asset: StellarSdk.Asset.native(),
             amount: amount
           }))
         .build();
-      // TODO: sign
+
+      // Sign transaction
+      var sourceKeypair = StellarSdk.Keypair.fromSecret(sourceSeed);
+      transaction.sign(sourceKeypair);
+
+      // Send transaction XDR
+      var xdr = transaction.toEnvelope().toXDR('base64');
+      fetch('/transactions', {
+        method: 'POST',
+        body: JSON.stringify({xdr: xdr}),
+        headers: new Headers({'Content-Type': 'application/json'})
+      }).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        console.log(res);
+      }).catch(function (err) {
+        console.log('Error: ' + err);
+      });
     });
   };
 })();
