@@ -1,7 +1,9 @@
 const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
+
 app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 const https = require('https');
 const fs = require('fs');
@@ -15,7 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/transactions', (req, res) => {
-  res.send('TODO');
+  res.send('XDR received: ' + req.body.xdr);
 });
 
 const server = https.createServer(httpsOptions, app).listen(process.env.PORT, () => {

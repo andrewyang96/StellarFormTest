@@ -2,8 +2,25 @@
 <html>
   <head>
     <title>Stellar Form Test</title>
+    <link href="/css/style.css" rel="stylesheet">
   </head>
   <body>
     <h1>Stellar Form Test</h1>
+    <form id="form">
+      <div class="field">
+        <label for="destination">Destination Address</label>
+        <input type="text" name="destination" required>
+      </div>
+      <div class="field">
+        <label for="amount">Amount</label>
+        <input type="text" name="amount" pattern="[1-9][0-9]*(\.[0-9]+)?" required>
+      </div>
+      <div class="field">
+        <label for="amount">Source Seed</label>
+        <input type="password" name="sourceSeed" required="">
+      </div>
+      <input type="submit">
+    </form>
+    <script src="/js/script.js"></script>
   </body>
 </html>
